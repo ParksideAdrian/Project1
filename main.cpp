@@ -18,8 +18,6 @@ void tripLength();
 void conferenceFees();
 void carRental();
 void costPerMile();
-void departureTime();
-void checkTime();
 int departureTime(int &);
 void checkint(int &);
 int getTotalDays();
@@ -28,7 +26,6 @@ double taxiFee(int);
 
 int main(){
     tripLength();
-    departureTime();
     airFair();
     double carCost;
     carRental(carCost);
@@ -40,11 +37,8 @@ int main(){
     double taxiSpent;
     days = getTotalDays();
     taxiSpent = taxiFee(days);
-    cout << taxiSpent;
-    
-    
-    cout << departure << " " << arrival << endl;
-    
+    cout << " Amount spent on taxi fars: " << taxiSpent;
+
     return 0;
 }
 /***********************************************
@@ -86,12 +80,14 @@ void carRental(double &refVar1){
     
     
 
-/************************************
- 
- Miles Driven
- Vehicle allowance is $0.58 per mile.
- 
- ************************************/
+/********************************************************************
+ *                                                                  *
+ *            Miles Driven: This function runs if a rental car is   *
+ *            used, as specified in carRental()                     *
+ *                                                                  *
+ *            Vehicle allowance is $0.58 per mile.                  *
+ *                                                                  *
+ *******************************************************************/
 
 void costPerMile(double &refVar){
     int milesDriven;
@@ -103,6 +99,14 @@ void costPerMile(double &refVar){
     
 }
 
+/*****************************************************************
+ *                      Trip Length                               *
+ *                                                                *
+ *    This Function receives information based on how many        *
+ *    days were spent on the trip                                 *
+ *                                                                *
+ *****************************************************************/
+
 void tripLength()
 {
     int days;
@@ -110,6 +114,15 @@ void tripLength()
     cin >> days;
     cout << endl;
 }
+
+/*****************************************************************
+ *                      AirFair                                   *
+ *                                                                *
+ *    This Function receives information based on the cost        *
+ *    of the round trip flight and calculates the cost, and       *
+ *    amount to be reimbursed                                     *
+ *                                                                *
+ *****************************************************************/
 
 void airFair()
 {
@@ -120,6 +133,16 @@ void airFair()
     cout << "Flight cost: " << cost << " " << "Flight cost reimbursed: " << reimbursement << endl;
     cout << endl;
 }
+
+/*****************************************************************
+ *                      Conference Fees                           *
+ *                                                                *
+ *    This Function receives information based on how much        *
+ *    money was spent on conference fees and how much             *
+ *    is to be reimbursed                                         *
+ *                                                                *
+ *****************************************************************/
+
 
 void conferenceFees()
 {
@@ -137,33 +160,7 @@ void conferenceFees()
  *    This Function receives information on the departure time    *
  *         and the return time for the business person            *
  *****************************************************************/
-void departureTime()
-{
-    double timeDepart,
-    timeReturn;
-    
-    cout << "What time was Departure (Military Time): ";
-    cin  >> timeDepart;
-    while(timeDepart < 0 || timeDepart > 2459){
-        cout << "ERROR! Invalid Time! Re-Enter Time: ";
-        cin  >> timeDepart;
-    }
-    
-    cout << "What time was the arrival (Military Time): ";
-    cin  >> timeReturn;
-    while(timeReturn < 0 || timeReturn > 2459){
-        cout << "ERROR! Invalid Time! Re-Enter Time: ";
-        cin  >> timeReturn;
-        cout << endl;
-    }
-}
 
-/*****************************************************************
- *              Departure Time and Return Time                    *
- *                                                                *
- *    This Function receives information on the departure time    *
- *         and the return time for the business person            *
- *****************************************************************/
 int departureTime(int & timeReturn)
 {
     int    timeDepart;
@@ -213,6 +210,7 @@ double taxiFee(int days)
     double  taxiSpent = 0.0,
     value     = 0.0;
     
+    cout << "\nEnter amount spent on taxi fares on the specified day" << endl;
     for(int i = 1; i <= days; i++){
         cout << " Total: " << taxiSpent << " Value: " << value << endl;
         cout << "How much was spent on day " << timeFrame << ": ";
