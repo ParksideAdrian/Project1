@@ -14,7 +14,6 @@ double carCost;
 void carRental(double &refVar1);
 void costPerMile(double &refVar);
 void airFair();
-void tripLength();
 void conferenceFees();
 void carRental();
 void costPerMile();
@@ -25,7 +24,6 @@ double taxiFee(int);
 
 
 int main(){
-    tripLength();
     airFair();
     double carCost;
     carRental(carCost);
@@ -99,21 +97,6 @@ void costPerMile(double &refVar){
     
 }
 
-/*****************************************************************
- *                      Trip Length                               *
- *                                                                *
- *    This Function receives information based on how many        *
- *    days were spent on the trip                                 *
- *                                                                *
- *****************************************************************/
-
-void tripLength()
-{
-    int days;
-    cout << "Amount of days on trip: ";
-    cin >> days;
-    cout << endl;
-}
 
 /*****************************************************************
  *                      AirFair                                   *
