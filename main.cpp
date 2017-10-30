@@ -20,6 +20,11 @@ void carRental();
 void costPerMile();
 void departureTime();
 void checkTime();
+int departureTime(int &);
+void checkint(int &);
+int getTotalDays();
+double taxiFee(int);
+
 
 int main(){
     tripLength();
@@ -28,6 +33,17 @@ int main(){
     double carCost;
     carRental(carCost);
     conferenceFees();
+    int departure,
+    arrival;
+    departure = departureTime(arrival);
+    int days;
+    double taxiSpent;
+    days = getTotalDays();
+    taxiSpent = taxiFee(days);
+    cout << taxiSpent;
+    
+    
+    cout << departure << " " << arrival << endl;
     
     return 0;
 }
@@ -157,31 +173,86 @@ void departureTime()
 ///**************************************************************************************************
 ///**************************************************************************************************
 
-/*
-Amount of days on trip: 3
 
-What time was Departure (Military Time): 1300
-What time was the arrival (Military Time): 1600
-Enter cost of round trip: 3000
-Flight cost: 3000 Flight cost reimbursed: 3000
+/*****************************************************************
+ *              Departure Time and Return Time                    *
+ *                                                                *
+ *    This Function receives information on the departure time    *
+ *         and the return time for the business person            *
+ *****************************************************************/
+int departureTime(int & timeReturn)
+{
+    int    timeDepart;
+    
+    cout << "Enter the time of Departure (Military Time, excluding colon): ";
+    cin  >> timeDepart;
+    checkint(timeDepart);
+    
+    cout << "Enter the time of Return (Military Time, excluding colon): ";
+    cin  >> timeReturn;
+    checkint(timeReturn);
+    
+    return timeDepart;
+}
+/*****************************************************************
+ *                        Time Validation                         *
+ *                                                                *
+ *    This Function reads for invalid time inputs such as 12:88   *
+ *****************************************************************/
+void checkint(int & time)
+{
+    int hundreds = time / 100,
+    tens     = time - (hundreds * 100);
+    
+    while(hundreds > 23 || tens > 59){
+        cout << "ERROR! That is an invalid time input. Please Re-Enter: ";
+        cin  >> time;
+        
+        hundreds = time / 100;
+        tens     = time - (hundreds * 100);
+    }
+}
 
-Did you rent a car? (y/n): n
-Was a private vehicle used? (y/n): y
-How many miles were driven? 600
-Car cost is: 348 Car cost reimbursed: 348
+//BULLETS 1 AND 7
+/**********************************************************
+ *                        Taxi Fee                         *
+ *                                                         *
+ *   This function asks the user to input a fee for Taxi   *
+ *   and if it goes over the allowance, the buisnessperson *
+ *   must pay the remainder out of pocket                  *
+ *                                                         *
+ **********************************************************/
 
-Enter cost of conference registration fees: 60
-Conference fees: 60 Conference fees reimbursed: 60
-
-Program ended with exit code: 0
-*/
-
-
-
-
-
-
-
+double taxiFee(int days)
+{
+    int     timeFrame = 1;
+    double  taxiSpent = 0.0,
+    value     = 0.0;
+    
+    for(int i = 1; i <= days; i++){
+        cout << " Total: " << taxiSpent << " Value: " << value << endl;
+        cout << "How much was spent on day " << timeFrame << ": ";
+        cin  >> value;
+        taxiSpent = taxiSpent + value;
+        timeFrame++;
+        cout << " Total: " << taxiSpent << " Value: " << value << endl;
+    }
+    return taxiSpent;
+}
+/***************************************************************************
+ *                            getTotalDays                                 *
+ * This function asks for and returns total number of days spent on trip.  *
+ **************************************************************************/
+int getTotalDays(){
+    int numDays;
+    cout << "Enter total number of days spent on trip: ";
+    cin >> numDays;
+    while(numDays < 0){
+        cout << "Error: Negative number of days invalid, re-enter: ";
+        cin >> numDays;
+    }
+    return numDays;
+}
 
 
 
