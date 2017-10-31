@@ -1,11 +1,3 @@
-//
-//  main.cpp
-//  20 Using Files--Travel Expanses
-//
-//  Created by Elias Tiso on 10/30/17.
-//  Copyright © 2017 Elias Tiso. All rights reserved.
-//
-
 #include <iostream>
 #include <iomanip>
 #include <fstream>
