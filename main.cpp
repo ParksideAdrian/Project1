@@ -1,3 +1,12 @@
+//
+//  main.cpp
+//  Prime Factorization
+//
+//  Created by Adrian Salazar on 10/31/17.
+//  Copyright © 2017 Adrian Salazar. All rights reserved.
+//
+
+
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -53,44 +62,46 @@ void checkYesNo(string &);
 //output to a file "project.txt"
 int main() {
     int days, timeReturn, timeDepart;
-    double airFareCost, rentalCost, privateCar, actualParking, allowedParking,
-    allowedTaxi, actualTaxi, conferenceCost, allowedHotel, actualHotel,
-    actualBreakfast, actualLunch, actualDinner, allowedBreakfast,
-    allowedLunch, allowedDinner;
-    
+    double airFareCost = 0.0, rentalCost = 0.0, privateCar = 0.0,
+    actualParking = 0.0 , allowedParking = 0.0, allowedTaxi = 0.0,
+    actualTaxi = 0.0, conferenceCost = 0.0, allowedHotel = 0.0,
+    actualBreakfast = 0.0, actualLunch = 0.0, actualDinner = 0.0,
+    allowedBreakfast = 0.0, allowedLunch = 0.0, allowedDinner = 0.0,
+    actualHotel = 0.0;
+
     string name;
-    
+
     cout << "Input employee name: ";
     getline(cin, name);
-    
+
     days = getTotalDays();
-    
+
     timeDepart = departureTime(timeReturn);
-    
+
     airFareCost = airFare();
-    
-    
+
+
     rentalCost = carRental();
-    
-    
+
+
     if(rentalCost == 0)
         privateCar = costPerMile();
     else
         privateCar = 0;
-    
-    
+
+
     allowedParking = parkingFees(days, actualParking);
-    
+
     allowedTaxi = taxiFee(days, actualTaxi);
-    
+
     conferenceCost = conferenceFees();
-    
+
     allowedHotel = hotelExpenses(days, actualHotel);
-    
+
     mealCost(days, timeDepart, timeReturn, actualBreakfast, actualLunch,
              actualDinner, allowedBreakfast, allowedLunch, allowedDinner);
-    
-    
+
+
     system("cls");
     cout << showpoint << fixed << setprecision(2);
     cout << "\n\n\n" << endl;
@@ -103,22 +114,42 @@ int main() {
     cout << setw(5) << " " << "______________________________"
     << "______________________________________" << endl;
     cout << endl;
-    cout << setw(5) << "" << setw(28) << left << "Air fare: " << "$" << setw(7) << right << airFareCost << setw(25) << "$" << setw(7) << airFareCost << right << endl;
-    cout << setw(5) << "" << setw(28) << left <<"Car Rental: " << "$" << setw(7) << right << rentalCost << setw(25) << "$" << setw(7) << rentalCost << right << endl;
-    cout << setw(5) << "" << setw(28) << left <<"Miles Driven: " << "$" << setw(7) << right << privateCar << setw(25) << "$" << setw(7) << privateCar << right << endl;
-    cout << setw(5) << "" << setw(28) << left << "Total Parking: " << "$" <<  setw(7) << right << allowedParking << setw(25) << "$" << setw(7) << actualParking << right << endl;
-    cout << setw(5) << "" << setw(28) << left << "Total Taxi: " << "$" <<  setw(7) << right << allowedTaxi << setw(25) << "$" << setw(7) << actualTaxi << right << endl;
-    cout << setw(5) << "" << setw(28) << left << "Conference Fee: " << "$" <<  setw(7) << right << conferenceCost << setw(25) << "$" << setw(7) << conferenceCost << right << endl;
-    cout << setw(5) << "" << setw(28) << left <<"Hotel Fee: " << "$" <<  setw(7) << right << allowedHotel << setw(25) << "$" << setw(7) << actualHotel << right << endl;
-    cout << setw(5) << "" << setw(28) << left << "Breakfast: " << "$" <<  setw(7) << right << allowedBreakfast << setw(25) << "$" << setw(7) << actualBreakfast << right << endl;
-    cout << setw(5) << "" << setw(28) << left << "Lunch: " << "$" <<  setw(7) << right << allowedLunch << setw(25) << "$" << setw(7) << actualLunch << right << endl;
-    cout << setw(5) << "" << setw(28) << left <<"Dinner: " << "$" <<  setw(7) << right << allowedDinner << setw(25) << "$" << setw(7) << actualDinner << right << endl;
+    cout << setw(5) << "" << setw(28) << left << "Air fare: " << "$"
+         << setw(7) << right << airFareCost << setw(25) << "$" << setw(7)
+         << airFareCost << right << endl;
+    cout << setw(5) << "" << setw(28) << left <<"Car Rental: " << "$"
+         << setw(7) << right << rentalCost << setw(25) << "$" << setw(7)
+         << rentalCost << right << endl;
+    cout << setw(5) << "" << setw(28) << left <<"Miles Driven: " << "$"
+         << setw(7) << right << privateCar << setw(25) << "$" << setw(7)
+         << privateCar << right << endl;
+    cout << setw(5) << "" << setw(28) << left << "Total Parking: " << "$"
+         <<  setw(7) << right << allowedParking << setw(25) << "$" << setw(7)
+         << actualParking << right << endl;
+    cout << setw(5) << "" << setw(28) << left << "Total Taxi: " << "$"
+         <<  setw(7) << right << allowedTaxi << setw(25) << "$" << setw(7)
+         << actualTaxi << right << endl;
+    cout << setw(5) << "" << setw(28) << left << "Conference Fee: " << "$"
+         <<  setw(7) << right << conferenceCost << setw(25) << "$" << setw(7)
+         << conferenceCost << right << endl;
+    cout << setw(5) << "" << setw(28) << left <<"Hotel Fee: " << "$"
+         <<  setw(7) << right << allowedHotel << setw(25) << "$" << setw(7)
+         << actualHotel << right << endl;
+    cout << setw(5) << "" << setw(28) << left << "Breakfast: " << "$"
+         <<  setw(7) << right << allowedBreakfast << setw(25) << "$" << setw(7)
+         << actualBreakfast << right << endl;
+    cout << setw(5) << "" << setw(28) << left << "Lunch: " << "$"
+         <<  setw(7) << right << allowedLunch << setw(25) << "$" << setw(7)
+         << actualLunch << right << endl;
+    cout << setw(5) << "" << setw(28) << left <<"Dinner: " << "$"
+         <<  setw(7) << right << allowedDinner << setw(25) << "$" << setw(7)
+         << actualDinner << right << endl;
     cout << endl;
     cout << setw(5) << "" << "_______________________________"
     << "_____________________________________" << endl;
-    
+
     ofstream outFile;
-    
+
     outFile.open("Project.txt");
     outFile << showpoint << fixed << setprecision(2);
     outFile << "\n\n\n" << endl;
@@ -131,23 +162,43 @@ int main() {
     outFile << setw(5) << " " << "______________________________"
     << "_____________________________________" << endl;
     outFile << endl;
-    outFile << setw(5) << "" << setw(28) << left << "Air fare: " << "$" << setw(7) << right << airFareCost << setw(25) << "$" << setw(7) << airFareCost << right << endl;
-    outFile << setw(5) << "" << setw(28) << left <<"Car Rental: " << "$" << setw(7) << right << rentalCost << setw(25) << "$" << setw(7) << rentalCost << right << endl;
-    outFile << setw(5) << "" << setw(28) << left <<"Miles Driven: " << "$" << setw(7) << right << privateCar << setw(25) << "$" << setw(7) << privateCar << right << endl;
-    outFile << setw(5) << "" << setw(28) << left << "Total Parking: " << "$" <<  setw(7) << right << allowedParking << setw(25) << "$" << setw(7) << actualParking << right << endl;
-    outFile << setw(5) << "" << setw(28) << left << "Total Taxi: " << "$" <<  setw(7) << right << allowedTaxi << setw(25) << "$" << setw(7) << actualTaxi << right << endl;
-    outFile << setw(5) << "" << setw(28) << left << "Conference Fee: " << "$" <<  setw(7) << right << conferenceCost << setw(25) << "$" << setw(7) << conferenceCost << right << endl;
-    outFile << setw(5) << "" << setw(28) << left <<"Hotel Fee: " << "$" <<  setw(7) << right << allowedHotel << setw(25) << "$" << setw(7) << actualHotel << right << endl;
-    outFile << setw(5) << "" << setw(28) << left << "Breakfast: " << "$" <<  setw(7) << right << allowedBreakfast << setw(25) << "$" << setw(7) << actualBreakfast << right << endl;
-    outFile << setw(5) << "" << setw(28) << left << "Lunch: " << "$" <<  setw(7) << right << allowedLunch << setw(25) << "$" << setw(7) << actualLunch << right << endl;
-    outFile << setw(5) << "" << setw(28) << left <<"Dinner: " << "$" <<  setw(7) << right << allowedDinner << setw(25) << "$" << setw(7) << actualDinner << right << endl;
+    outFile << setw(5) << "" << setw(28) << left << "Air fare: " << "$"
+            << setw(7) << right << airFareCost << setw(25) << "$" << setw(7)
+            << airFareCost << right << endl;
+    outFile << setw(5) << "" << setw(28) << left <<"Car Rental: " << "$"
+            << setw(7) << right << rentalCost << setw(25) << "$" << setw(7)
+            << rentalCost << right << endl;
+    outFile << setw(5) << "" << setw(28) << left <<"Miles Driven: " << "$"
+            << setw(7) << right << privateCar << setw(25) << "$" << setw(7)
+            << privateCar << right << endl;
+    outFile << setw(5) << "" << setw(28) << left << "Total Parking: " << "$"
+            << setw(7) << right << allowedParking << setw(25) << "$" << setw(7)
+            << actualParking << right << endl;
+    outFile << setw(5) << "" << setw(28) << left << "Total Taxi: " << "$"
+            << setw(7) << right << allowedTaxi << setw(25) << "$" << setw(7)
+            << actualTaxi << right << endl;
+    outFile << setw(5) << "" << setw(28) << left << "Conference Fee: " << "$"
+            << setw(7) << right << conferenceCost << setw(25) << "$" << setw(7)
+            << conferenceCost << right << endl;
+    outFile << setw(5) << "" << setw(28) << left <<"Hotel Fee: " << "$"
+            << setw(7) << right << allowedHotel << setw(25) << "$" << setw(7)
+            << actualHotel << right << endl;
+    outFile << setw(5) << "" << setw(28) << left << "Breakfast: " << "$"
+            << setw(7) << right << allowedBreakfast << setw(25) << "$" << setw(7)
+            << actualBreakfast << right << endl;
+    outFile << setw(5) << "" << setw(28) << left << "Lunch: " << "$"
+            << setw(7) << right << allowedLunch << setw(25) << "$" << setw(7)
+            << actualLunch << right << endl;
+    outFile << setw(5) << "" << setw(28) << left <<"Dinner: " << "$"
+            << setw(7) << right << allowedDinner << setw(25) << "$" << setw(7)
+            << actualDinner << right << endl;
     outFile << endl;
     outFile << setw(5) << "" << "_______________________________"
     << "____________________________________" << endl;
-    
-    
+
+
     cout << "Receipt was sent to file." << endl;
-    
+
     return 0;
 }
 
@@ -178,15 +229,15 @@ int getTotalDays(){
 int departureTime(int & timeReturn)
 {
     int    timeDepart;
-    
+
     cout << "Enter the time of Departure (Military Time, excluding colon): ";
     cin  >> timeDepart;
     checkint(timeDepart);
-    
+
     cout << "Enter the time of Return (Military Time, excluding colon): ";
     cin  >> timeReturn;
     checkint(timeReturn);
-    
+
     return timeDepart;
 }
 /******************************************************************
@@ -198,11 +249,11 @@ void checkint(int & time)
 {
     int hundreds = time / 100,
     tens     = time - (hundreds * 100);
-    
+
     while(hundreds > 23 || tens > 59){
         cout << "ERROR! That is an invalid time input. Please Re-Enter: ";
         cin  >> time;
-        
+
         hundreds = time / 100;
         tens     = time - (hundreds * 100);
     }
@@ -263,7 +314,7 @@ double carRental(){
 double costPerMile(){
     string ch;
     int milesDriven;
-    
+
     cout << "Was a private vehicle used? (y/n): ";
     cin >> ch;
     checkYesNo(ch);
@@ -271,7 +322,7 @@ double costPerMile(){
      cout << "Error. Invalid input, please try again";
      cin >> ch;
      }*/
-    
+
     if(ch == "y" ||  ch == "Y"){
         checkYesNo(ch);
         cout << "How many miles were driven? ";
@@ -296,15 +347,15 @@ double costPerMile(){
  *          for                                              *
  *************************************************************/
 double parkingFees(int days, double &spentParking){
-    
+
     cout << "How much was spent on parking during the trip? ";
     cin >> spentParking;
-    
+
     while(spentParking < 0){
         cout << "Error. Please enter a positive number: ";
         cin >> spentParking;
     }
-    
+
     return PARK_PER_DAY * days;
 }
 
@@ -337,7 +388,7 @@ double taxiFee(int days, double &taxiSpent)
         taxiSpent = taxiSpent + value;
         timeFrame++;
     }
-    
+
     return numdays * TAXI_PER_DAY;
 }
 
@@ -385,22 +436,23 @@ double hotelExpenses(int days, double &spentHotel)
  *       meals every day for the time period they          *
  *       were on the business trip.                        *
  **********************************************************/
-void mealCost(int days, int departure, int arrival, double &totalBreakfastSpent, double &totalLunchSpent, double &totalDinnerSpent,
+void mealCost(int days, int departure, int arrival, double &totalBreakfastSpent,
+              double &totalLunchSpent, double &totalDinnerSpent,
               double &breakfastAllowed, double &lunchAllowed,
               double &dinnerAllowed){
-    
-    int numBreakfasts = days,
-    numLunches = days,
-    numDinners = days,
-    breakfastSpent,
-    lunchSpent,
-    dinnerSpent,
-    firstBreakfastDay = 1,
-    firstLunchDay = 1,
-    firstDinnerDay = 1;
-    
-    
-    
+
+    int     numBreakfasts = days,
+            numLunches = days,
+            numDinners = days,
+            breakfastSpent,
+            lunchSpent,
+            dinnerSpent,
+            firstBreakfastDay = 1,
+            firstLunchDay = 1,
+            firstDinnerDay = 1;
+
+
+
     if(departure >= 700){
         numBreakfasts--;
         firstBreakfastDay++;
@@ -419,11 +471,12 @@ void mealCost(int days, int departure, int arrival, double &totalBreakfastSpent,
         numLunches--;
     if(arrival <= 1900)
         numDinners--;
-    
-    
+
+
     if(numBreakfasts > 0){
         for(int i = 1; i <= numBreakfasts; i++){
-            cout << "Enter the amount spent on breakfast on day " << firstBreakfastDay << ": ";
+            cout << "Enter the amount spent on breakfast on day "
+                 << firstBreakfastDay << ": ";
             cin >> breakfastSpent;
             while(breakfastSpent < 0){
                 cout << "Error: Negative amount invalid, re-enter: ";
@@ -435,14 +488,16 @@ void mealCost(int days, int departure, int arrival, double &totalBreakfastSpent,
         breakfastAllowed = numBreakfasts * BREAKFAST;
     }
     else{
-        breakfastSpent = 0;
+        totalBreakfastSpent = 0;
         breakfastAllowed = 0;
     }
-    
+
     if(numLunches > 0){
         for(int i = 1; i <= numLunches; i++){
-            cout << "Enter the amount spent on lunch on day " << firstLunchDay << ": ";
+            cout << "Enter the amount spent on lunch on day " << firstLunchDay
+                 << ": ";
             cin >> lunchSpent;
+            cin.ignore();
             while(lunchSpent < 0){
                 cout << "Error: Negative amount invalid, re-enter: ";
                 cin >> lunchSpent;
@@ -453,14 +508,16 @@ void mealCost(int days, int departure, int arrival, double &totalBreakfastSpent,
         lunchAllowed = numLunches * LUNCH;
     }
     else{
-        lunchSpent = 0;
+        totalLunchSpent = 0;
         lunchAllowed = 0;
     }
-    
+
     if(numDinners > 0){
         for(int i = 1; i <= numDinners; i++){
-            cout << "Enter the amount spent on dinner on day " << firstDinnerDay << ": ";
+            cout << "Enter the amount spent on dinner on day "
+                 << firstDinnerDay << ": ";
             cin >> dinnerSpent;
+            cin.ignore();
             while(dinnerSpent < 0){
                 cout << "Error: Negative amount invalid, re-enter: ";
                 cin >> dinnerSpent;
@@ -471,10 +528,10 @@ void mealCost(int days, int departure, int arrival, double &totalBreakfastSpent,
         dinnerAllowed = numDinners * DINNER;
     }
     else{
-        dinnerSpent = 0;
+        totalDinnerSpent = 0;
         dinnerAllowed = 0;
     }
-    
+
 }
 
 /*************************************************************
